@@ -1,0 +1,64 @@
+---
+title: "Zia's data"
+author: "Valerie Rodriguez"
+date: "2023-02-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+require(tidyverse)
+require(tigerstats)
+mydata<- read.csv(file= "Zia's data.csv")
+mydata$Scorpion_ID <- as.factor(mydata$Scorpion_ID)
+```
+
+#   Anaylsis of NumProbes
+```{r}
+boxplot(NumProbes~Scorpion_ID,data=mydata)
+```
+
+
+The box plot shows that the bottom of "Low" temperature scorpions is placed higher then top of "High" temperature scorpions. Those scorpions who were in higher temperatures required less probes to make them aggravated than the ones in low temperatures.
+
+
+```{r}
+favstats(NumProbes~Scorpion_ID,data=mydata)
+```
+
+The average number of probes for the high temperature scorpions is 6.5 and the average for low temp scorpions is almost 4x more being 23.5. This indicates that the scorpions who were in higher temperature became aggravated and sting 4x quicker than in low temperature.
+
+```{r}
+t.test(NumProbes~Scorpion_ID,data=mydata)
+```
+
+At the 95% confidence level there is a difference between high and low temperature scorpions. This is indicated through the p value of 0.03651 which is significantly small.
+
+
+#   Analysis of TimeSting
+
+```{r}
+boxplot(TimeSting~Scorpion_ID,data=mydata)
+```
+
+The high temperature scorpions box is smaller than the low temperature ones. It took the low temperature scorpions longer to sting than the ones in high temperature.
+
+```{r}
+favstats(TimeSting~Scorpion_ID,data=mydata)
+```
+
+The mean for high temperature is 29 and the mean for low temperature is about 4.6x more at 135. This means that lower temperature scorpions took much longer to sting. There is a difference in the stander deviation, mean and the median showed in the numerical results.
+
+
+```{r}
+t.test(TimeSting~Scorpion_ID,data=mydata,conf.level=.9)
+```
+
+At the 90% confidence level you can say that there is difference between scorpions in low temperature and ones in high temperature. At 95% and 99% confidence levels there is no difference between the scorpions.
+
+
+
+There was a sufficient amount of scorpions for the first experiment but not for the second.
